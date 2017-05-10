@@ -23,10 +23,22 @@
         //Agregar contactos
         if( $_POST['peticion']=='agregar'){
             $contacto = new Contacto($_POST);
-
+            $contacto->setDirImagen($_POST['nombre']."_".$_POST['tel']."_".$_FILES['foto']['name']);
             //Si se registro con exito, devuelve  un mensaje de confirmacion
+             if(!is_dir("../img/fotosContacto")) 
+                mkdir("../img/fotosContacto", 0777);
+            
+             //comprobamos si el archivo ha subido
+             if ($_FILES['foto']['name'] && move_uploaded_file($_FILES['foto']['tmp_name'],"../img/fotosContacto/".$_POST['nombre']."_".$_POST['tel']."_".$_FILES['foto']['name']))
+             {
+                sleep(3);//retrasamos la petición 3 segundos
+               // echo $file;//devolvemos el nombre del archivo para pintar la imagen
+             }
+
             if($contacto->agregar($_SESSION['usuario'])){
+               
                 echo "Contacto Agregado con exito";
+                
             }
             else{
                 echo "Error al agregar contacto";
@@ -45,5 +57,8 @@
                 echo "Error al intentar eliminar el usuario";
             }
         }
+
+        else
+            echo "Ningun caso";
     }
 ?>

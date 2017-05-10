@@ -3,7 +3,8 @@
 
 create table registroUsuario(
     usuario varchar(15) not null primary key,
-    pass varchar(15) not null
+    pass varchar(15) not null,
+    foto varchar(100)
 );
 
 create table contacto(
@@ -14,5 +15,6 @@ create table contacto(
     cel varchar (13),
     email varchar(35),
     direccion varchar(100),
+    foto varchar(100),
     foreign key (idUsuario) REFERENCES registroUsuario(usuario) on delete cascade on update cascade
 )
