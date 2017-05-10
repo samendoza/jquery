@@ -8,7 +8,7 @@
             var busqueda = $(":input[name='busqueda']").val();
             var categoria = $("input[name='categoria']:checked").val();
             //alert(busqueda + " " + categoria);
-            var posting = $.get( "ctrlBusContactos.php", {busqueda:busqueda, categoria:categoria, peticion: "buscar"});
+            var posting = $.get( "controladores/ctrlContacto.php", {busqueda:busqueda, categoria:categoria, peticion: "buscar"});
             posting.done(function( data ) {
                 $("#respuesta").show().html(data);
             });
@@ -20,7 +20,7 @@
             var mensaje = confirm("¿Está seguro que desea eliminar este contacto?");
            
             if (mensaje) {
-                var posting = $.post( "ctrlAgContactos.php", {valor: valor, peticion: "eliminar"});
+                var posting = $.post( "controladores/ctrlContacto.php", {valor: valor, peticion: "eliminar"});
                 posting.done(function( data ) {
                     alert(data);
                     busqueda();
@@ -37,7 +37,7 @@
             var dir = $(":input[name='dir']").val();
 
 
-            var posting = $.post( "ctrlAddCont.php", {nombre:nombre, tel: tel, email: email, cel:cel, dir: dir, peticion: "agregar"});
+            var posting = $.post( "controladores/ctrlContacto.php", {nombre:nombre, tel: tel, email: email, cel:cel, dir: dir, peticion: "agregar"});
             posting.done(function( data ) {
                 var $form = $("#fmAddCont");
                 $form.find( "input[name='nombre']" ).val("");
@@ -86,7 +86,7 @@
         <br>
         <br>
         <div id="fmAgregar" style="display: none;"> 
-            <form method="Post" action="ctrlAddCont.php" id="fmAddCont">
+            <form method="Post" action="controladores/ctrlContacto.php" id="fmAddCont">
                 Nombre: <input type="text" name="nombre" required> </input><br>
                 E-mail: <input type="text" name="email" required> </input><br>
                 Tel. fijo: <input type="text" name="tel" required> </input><br>
