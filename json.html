@@ -1,0 +1,36 @@
+<html>
+    <head> 
+        <meta charset="UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+           
+                $(document).ready(function(){ //hasta que la pagina este completamente cargada
+
+                $("#fmregistro").submit(function(event){ //al dar clic en enviar:
+                    alert("llegue a jquery");
+                   // event.preventDefault(); //previene que el formulario se procese como lo hace normalmente 
+                    
+                    var $form = $( this ), // crea una variable form que apunta al formulario
+                    url = $form.attr( "action" );
+                    var objJson = "hola";
+
+                    // Se envia la peticion a la url junto con un objeto data, que puede ser un array {llave:valor}
+                    $.ajax({
+                        data: objJson,
+                        url: 'json.php',
+                        type: 'post',
+                        success: function (response){
+                            console.log(respnse);
+                        }
+				    });		
+                });
+            });
+       
+        </script>
+    </head>
+    <body>
+        <form id="fmregistro" action="json.php">
+            <input type="submit" value="Enviar"> </input>
+        </form>
+    </body>
+</html>
