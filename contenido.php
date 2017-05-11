@@ -8,6 +8,10 @@
                     alert("Salir sesion");
                     $(location).attr('href',"controladores/logout.php");
                 });
+
+                $("#editarPerfil").click(function(){
+                     $(location).attr('href',"editar.php");
+                });
             });
         </script>
     </head>
