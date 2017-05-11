@@ -35,7 +35,7 @@
             } 
         }
 
-        else if($_POST['peticion']){
+        else if($_POST['peticion']=="eliminar"){
             
             $contacto = new Contacto($_POST);
 
