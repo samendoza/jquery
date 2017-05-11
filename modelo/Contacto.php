@@ -86,6 +86,15 @@
         public function eliminar(){
             $db = new DataBase();
             $db->conectar();
+            $query = "select img from contacto where idContacto = '".$this->idContacto."'";
+            //echo $query;
+            $result = $db->consulta($query);
+
+            if(mysqli_num_rows($result) > 0){
+                while($row = mysqli_fetch_assoc($result))
+                    $this->dirImagen = $row['img']; 
+            }
+
             $query = "delete from contacto where idContacto = ".$this->idContacto;
             //echo $query;
             if ($db->consulta($query)) {
@@ -117,6 +126,10 @@
 
         public function setDirImagen($dirImg){
             $this->dirImagen = "img/fotosContacto/".$dirImg;
+        }
+
+        public function getDirImagen(){
+            return $this->dirImagen;
         }
 
         
