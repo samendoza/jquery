@@ -36,26 +36,6 @@
            
 
 
-            /*var nombre = $(":input[name='nombre']").val();
-            var email = $(":input[name='email']").val();
-            var tel = $(":input[name='tel']").val();
-            var cel = $(":input[name='cel']").val();
-            var dir = $(":input[name='dir']").val();*/
-
-
-            /*var posting = $.post( "controladores/ctrlContacto.php", {nombre:nombre, tel: tel, email: email, cel:cel, dir: dir, peticion: "agregar"});
-            posting.done(function( data ) {
-                var $form = $("#fmAddCont");
-                $form.find( "input[name='nombre']" ).val("");
-                $form.find( "input[name='tel']" ).val("");
-                $form.find( "input[name='cel']" ).val("");
-                $form.find( "input[name='dir']" ).val("");
-                $form.find( "input[name='email']" ).val("");
-                alert(data);
-                busqueda();
-                $("#fmAgregar").hide();
-            });*/
-
             $.ajax({
             url: 'controladores/ctrlContacto.php',  
             type: 'POST',
@@ -69,15 +49,22 @@
             //mientras enviamos el archivo
             beforeSend: function(){
                 message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
-                //showMessage(message)        
+                showMessage(message);
             },
             //una vez finalizado correctamente
             success: function(data){
                 alert(data);
                 busqueda();
+                $( ":input[name='nombre']" ).val("");
+                $( ":input[name='tel']" ).val("");
+                $( ":input[name='cel']" ).val("");
+                $( ":input[name='dir']" ).val("");
+                $( ":input[name='email']" ).val("");
+              
+                //document.getElementById('fmAgregar').reset();
                 $("#fmAgregar").hide();
                 message = $("<span class='success'>La imagen ha subido correctamente.</span>");
-                //showMessage(message);
+                showMessage(message);
                /* if(isImage(fileExtension))
                 {
                     $(".showImage").html("<img src='files/"+data+"' />");
@@ -86,8 +73,7 @@
             //si ha ocurrido un error
             error: function(){
                 message = $("<span class='error'>Ha ocurrido un error.</span>");
-                
-                //showMessage(message);
+                showMessage(message);
             }
         });
         }
@@ -96,10 +82,16 @@
              $("#busqueda").keyup(busqueda);
              $(".rbCategoria").click(busqueda);
              $("#agregar").click(function(){
+                 showMessage("");
                  $("#fmAgregar").show();
              });
              $(".fmAddCont").submit(agregar);
         });
+
+        function showMessage(message){
+            $(".messages").html("").show();
+            $(".messages").html(message);
+        }
 
         
         </script>
@@ -138,6 +130,7 @@
                 <input type="submit" value="Agregar contacto" required> </input>
 
             </form>
+            <div class="messages"> </div>
         </div>
     </body>
 </html>

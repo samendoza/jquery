@@ -6,7 +6,7 @@
             $(document).ready(function(){
                 $("#cerrarSesion").click(function(){
                     alert("Salir sesion");
-                    $(location).attr('href',"logout.php");
+                    $(location).attr('href',"controladores/logout.php");
                 });
             });
         </script>
@@ -20,7 +20,7 @@
 
         <h1> Bienvenido(a) <?php echo $_SESSION['usuario']; ?> </h1> 
         <?php
-             echo "<img src='".$_SESSION['foto']."'></img>";
+             echo "<img src='".$_SESSION['foto']."' style='heigth: 100px; width:100px;'></img>";
         ?>  
         <p> Contenido </p>
 
