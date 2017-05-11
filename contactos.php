@@ -74,6 +74,8 @@
             //una vez finalizado correctamente
             success: function(data){
                 alert(data);
+                busqueda();
+                $("#fmAgregar").hide();
                 message = $("<span class='success'>La imagen ha subido correctamente.</span>");
                 //showMessage(message);
                /* if(isImage(fileExtension))
