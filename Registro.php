@@ -114,7 +114,7 @@
              Agregar una imagen: <input type="file" name="foto" id="foto"></input><br>
             <br>
 
-			<input type="submit" value="registrarme"> </input>
+			<input type="submit" value="Guardar cambios"> </input>
 		</form>
 		
 	</body>
