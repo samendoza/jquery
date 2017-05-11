@@ -38,8 +38,8 @@
             $db = new DataBase();
             $db->conectar();
             
-            $query = "insert into registrousuario (usuario, pass) values('".$this->usuario."','".$this->pass."')";
-            //echo $query;
+            $query = "insert into registrousuario (usuario, pass, fotoUsuario) values('".$this->usuario."','".$this->pass."','".$this->img."')";
+            echo $query;
             $result = $db->consulta($query);
             
 

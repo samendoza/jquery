@@ -30,7 +30,7 @@
 
         function agregar(event){
             event.preventDefault();
-            alert("llegue");
+           // alert("llegue");
             var formData = new FormData($(".fmAddCont")[0]);
             formData.append("peticion","agregar");
            
