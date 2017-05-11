@@ -17,6 +17,7 @@
         if($usuario->iniciarSesion()){
             session_start();
             $_SESSION['usuario'] = $usuario->getUsuario();
+            $_SESSION['foto'] = $usuario->getImg();
             $_SESSION['logged_in'] = true;
             echo "1";
         }
