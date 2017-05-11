@@ -1,7 +1,7 @@
 <?php
 
-    require 'Database.php';
-    require 'Usuario.php';
+    require '../modelo/Database.php';
+    require '../modelo/Usuario.php';
 
     if($_POST['usuario']){
         $user = $_POST['usuario'];

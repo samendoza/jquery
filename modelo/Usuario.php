@@ -2,6 +2,7 @@
     class Usuario{
         private $usuario;
         private $pass;
+        private $img;
 
         function __construct($usuario, $pass){
             $this->usuario = $usuario;
@@ -69,7 +70,10 @@
             //echo "no existe el usuario";
             $db->desconectar();
             return false;
-            
+        }
+
+        public function setImg($img){
+            $this->img = $img;
         }
     }
 ?>

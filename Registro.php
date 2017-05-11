@@ -35,7 +35,7 @@
                     $("#avisoUsuario").show();
                    // alert($(this).val());
                     var usuario = $(":input[name='usuarioR']").val();
-                    var posting = $.post( "reg.php", {usuario: usuario});
+                    var posting = $.post( "controladores/reg.php", {usuario: usuario});
                     posting.done(function( data ) {
                         if(data == "1"){    
                             $("#avisoUsuario").show().css("color","red").text("El nombre de usuario está ocupado");
@@ -54,7 +54,7 @@
 	</head>
 	<body>
 		<h1> Registro </h1>
-		<form method="POST" action="CtlRegistro.php" id="fmregistro">
+		<form method="POST" action="controladores/CtlRegistro.php" id="fmregistro">
             <span> Nombre de usuario </span><br>
 			<input type="text" name="usuarioR" placeholder="Usuario" id="usuarioR" required> </input>
             <span id="avisoUsuario" style="display:none"> </span>

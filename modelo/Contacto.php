@@ -70,7 +70,8 @@
                     $resp .= "<td>".$row['tel']."</td>";
                     $resp .= "<td>".$row['cel']."</td>";
                     $resp .= "<td>".$row['direccion']."</td>";
-                    $resp .= "<td><img style = 'height: 100px; width: 100px' src='".$row['img']."'></img> </td>";
+                    $resp .= "<td><img style = 'height: 100px; width: 100px' src='".$row['fotoContacto']."'></img> </td>";
+                    //echo "row ".$row['foto'];
                     $resp .= "<td><button onclick='eliminar(this)' value=".$row['idContacto']." ><img  style = ' height: 20px; width: 20px; ' src='img/eliminar.png'></img></button></td>";
                     $resp .= "</tr>";
                 }
@@ -86,13 +87,13 @@
         public function eliminar(){
             $db = new DataBase();
             $db->conectar();
-            $query = "select img from contacto where idContacto = '".$this->idContacto."'";
+            $query = "select fotoContacto from contacto where idContacto = '".$this->idContacto."'";
             //echo $query;
             $result = $db->consulta($query);
 
             if(mysqli_num_rows($result) > 0){
                 while($row = mysqli_fetch_assoc($result))
-                    $this->dirImagen = $row['img']; 
+                    $this->dirImagen = $row['fotoContacto']; 
             }
 
             $query = "delete from contacto where idContacto = ".$this->idContacto;
@@ -110,7 +111,7 @@
         public function agregar($idUsuario){
             $db = new DataBase();
             $db->conectar();
-            $query = "insert into contacto (idUsuario, nombre, tel, cel, email, direccion,img) values ('".$idUsuario."','".$this->nombre."','".$this->tel."','".$this->cel."','".$this->email."','".$this->direccion."','".$this->dirImagen."')";
+            $query = "insert into contacto (idUsuario, nombre, tel, cel, email, direccion,fotoContacto) values ('".$idUsuario."','".$this->nombre."','".$this->tel."','".$this->cel."','".$this->email."','".$this->direccion."','".$this->dirImagen."')";
             
             //echo $query;
             if ($db->consulta($query)) {

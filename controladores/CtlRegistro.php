@@ -1,6 +1,6 @@
 <?php
-    require 'Database.php';
-    require 'Usuario.php';
+    require '../modelo/Database.php';
+    require '../modelo/Usuario.php';
 
     
     if($_POST['usuario']&& $_POST['pass'] && $_POST['pass2']){
