@@ -22,6 +22,8 @@
         <?php
              echo "<img src='".$_SESSION['foto']."' style='heigth: 100px; width:100px;'></img>";
         ?>  
+        <button id="editarPerfil"> Editar perfil </button>
+
         <p> Contenido </p>
 
         <ul>
