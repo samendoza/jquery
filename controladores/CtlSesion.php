@@ -1,7 +1,7 @@
 <?php
-    require 'Database.php';
-    require 'Usuario.php';
-
+    require '../modelo/Database.php';
+    require '../modelo/Usuario.php';
+    
     //Caso 1: Sesion iniciada correctamente, se redirige al contenido
     //Caso 2: Error en usuario y/o contraseña
     //Caso 3: Algun campo vacio
@@ -22,7 +22,6 @@
         }
         else
             echo "2";
-        
     }
     else
         echo "3";

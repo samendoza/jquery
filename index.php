@@ -7,7 +7,7 @@
 	<body>
 		<h1> Bienvenido </h1>
 		<p> Iniciar sesion </p>
-		<form method="POST" action="CtlSesion.php" id="fmInicioSesion">
+		<form method="POST" action="controladores/CtlSesion.php" id="fmInicioSesion">
 			<input type="text" name="usuario" placeholder="Usuario" required> </input> <br>
 			<input type="password" name="pass" placeholder="Contraseña" required> </input> <br>
 			<input type="submit" value="Iniciar sesion"> </input>

@@ -3,7 +3,7 @@
         private $servername = "localhost";
         private $username = "root";
         private $password = "";
-        private $db="prueba";
+        private $db="prueba2";
         
         private $conn;
         private $result;
