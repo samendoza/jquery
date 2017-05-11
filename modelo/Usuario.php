@@ -20,6 +20,10 @@
             //Si hay un registro, el usuario y la contraseña existen
             if($result->num_rows > 0) {
                 //redireccion a nueva pagina con inicio de sesion exitoso
+                while($row = mysqli_fetch_assoc($result)){
+                     $this->img = $row['fotoUsuario'];
+                 }
+                 //echo "img: ".$this->img;
                 $db->desconectar();
                 return true;
             }
@@ -39,7 +43,7 @@
             $db->conectar();
             
             $query = "insert into registrousuario (usuario, pass, fotoUsuario) values('".$this->usuario."','".$this->pass."','".$this->img."')";
-            echo $query;
+            //echo $query;
             $result = $db->consulta($query);
             
 
@@ -62,6 +66,7 @@
 
             //Si hay un registro, el usuario y la contraseña existen
             if($result->num_rows > 0) {
+                 
                 //redireccion a nueva pagina con inicio de sesion exitoso
                 $db->desconectar();
                 return true;
@@ -74,6 +79,10 @@
 
         public function setImg($img){
             $this->img = $img;
+        }
+
+        public function getImg(){
+            return $this->img;
         }
     }
 ?>

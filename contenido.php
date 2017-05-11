@@ -18,7 +18,10 @@
                 header("Location: index.php");  
         ?>
 
-        <h1> Bienvenido(a) <?php echo $_SESSION['usuario']; ?> </h1>
+        <h1> Bienvenido(a) <?php echo $_SESSION['usuario']; ?> </h1> 
+        <?php
+             echo "<img src='".$_SESSION['foto']."'></img>";
+        ?>  
         <p> Contenido </p>
 
         <ul>
