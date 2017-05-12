@@ -9,45 +9,45 @@
             $this->pass = $pass;
         }
 
+        /*************************************************************************************************************************
+        *Funcion iniciarSesion() verifica si un nombre de usuario y contraseña estan almacenados en la base y ademas coinciden
+        *retorno: boolean true->inicio exitoso/usuario y contraseña corresponden   
+        *         false->El usuario y/o la contraseña no coinciden
+        /*************************************************************************************************************************/
         public function iniciarSesion(){
             $db = new DataBase();
             $db->conectar();
             
             $query = "Select * from registroUsuario where usuario = '".$this->usuario."' and pass='".$this->pass."'";
-            //echo $query;
             $result = $db->consulta($query);
 
             //Si hay un registro, el usuario y la contraseña existen
             if($result->num_rows > 0) {
-                //redireccion a nueva pagina con inicio de sesion exitoso
+               
+                //recupero la direccion de la imagen del usuario para ponersela en su perfil
                 while($row = mysqli_fetch_assoc($result)){
                      $this->img = $row['fotoUsuario'];
                  }
-                 //echo "img: ".$this->img;
+             
                 $db->desconectar();
                 return true;
             }
-    
-            //echo "no existe el usuario";
             $db->desconectar();
             return false;
             
         }
 
-        public function getUsuario(){
-            return $this->usuario;
-        }
-
+        /*************************************************************************************************************************
+        *Funcion registrar() registra un nuevo usuario en la base de datos
+        *retorno: boolean true->registro exitoso  
+        *         false->falla al momento de hacer el registro en la bd
+        /*************************************************************************************************************************/
         public function registrar(){
             $db = new DataBase();
             $db->conectar();
-            
             $query = "insert into registrousuario (usuario, pass, fotoUsuario) values('".$this->usuario."','".$this->pass."','".$this->img."')";
-            //echo $query;
-            $result = $db->consulta($query);
-            
 
-            if($result) {
+            if($db->consulta($query)) {
                 $db->desconectar();
                 return true;
             }
@@ -56,23 +56,46 @@
             return false;
         }
 
+        /*************************************************************************************************************************
+        *Funcion estaRegistrado(): Devuelve true o false dependiendo si el nombre de usuario ya se usa en otro registro
+        *retorno: boolean true->Nombre de usuario ocupado
+        *         false->Nombre de usuario disponible
+        /*************************************************************************************************************************/
         public function estaRegistrado(){
             $db = new DataBase();
             $db->conectar();
             
             $query = "Select * from registroUsuario where usuario = '".$this->usuario."'";
-            //echo $query;
             $result = $db->consulta($query);
 
-            //Si hay un registro, el usuario y la contraseña existen
+            //el nombre de usuario ya existe
             if($result->num_rows > 0) {
-                 
-                //redireccion a nueva pagina con inicio de sesion exitoso
                 $db->desconectar();
                 return true;
             }
     
-            //echo "no existe el usuario";
+            //el nombre de usuario esta disponible
+            $db->desconectar();
+            return false;
+        }
+
+        /*************************************************************************************************************************
+        *Funcion actualizarPass(): Cambia la contraseña del usuario y devuelve true o false dependiendo el cambio fue exitoso
+        *retorno: boolean true-> cambio exitoso
+        *         false->error al cambiar la contraseña
+        /*************************************************************************************************************************/
+        public function actualizarPass($passNuevo){
+            $db = new DataBase();
+            $db->conectar();
+            $query = "update registrousuario set pass = '".$passNuevo."' where usuario =  '".$this->usuario."'";
+
+            //cambio exitoso
+            if($db->consulta($query)) {
+                $db->desconectar();
+                return true;
+            }
+    
+            //error al cambiar la contraseña
             $db->desconectar();
             return false;
         }
@@ -85,22 +108,10 @@
             return $this->img;
         }
 
-        public function actualizarPass($passNuevo){
-            $db = new DataBase();
-            $db->conectar();
-            
-            $query = "update registrousuario set pass = '".$passNuevo."' where usuario =  '".$this->usuario."'";
-            echo $query;
-            if($db->consulta($query)) {
-                 
-                //redireccion a nueva pagina con inicio de sesion exitoso
-                $db->desconectar();
-                return true;
-            }
-    
-            //echo "no existe el usuario";
-            $db->desconectar();
-            return false;
+        public function getUsuario(){
+            return $this->usuario;
         }
+
+        
     }
 ?>

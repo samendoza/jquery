@@ -7,10 +7,16 @@
         private $cel;
         private $direccion;
         private $email;
-
-        private $categoria;
         private $dirImagen;
 
+        private $categoria;
+        
+        /*************************************************************************************************************************
+        *Metodo contructor: Inicializa al contacto de diferentes formas, de acuerdo a la peticion que tenga
+        *peticion agregar-> inicializa todos los atributos para despues almacernarlos en la base de datos
+        *peticion buscar -> Inicializa solo algun campo de contacto, de acuerdo si se busca por nombre, email o cel
+        *peticion eliminar -> Inicializa solo el id de contacto para posteriormente eliminarlo de la base de datos
+        /*************************************************************************************************************************/
         function __construct($arreglo){
             if($arreglo['peticion'] == "agregar"){
                 $this->nombre =  $arreglo['nombre'];
@@ -39,6 +45,11 @@
             }
         }
 
+        /*************************************************************************************************************************
+        *Metodo busqueda: realiza una busqueda de acuerdo a un criterio en la tabla contactos
+        *Parametros: $usuario-> id del usuario actual al que se le va a asociar el nuevo contacto (llave foranea)
+        *Retorno: String que contiene una tabla en html que despliega los resultados de la busqueda
+        /*************************************************************************************************************************/
         public function busqueda($usuario){
             $db = new DataBase();
             $db->conectar();
@@ -56,9 +67,8 @@
                         $query = "Select * from contacto c, registroUsuario r where c.idUsuario = r.usuario ".
                                  "and  idUsuario = '".$usuario."' and cel like '%".$this->cel."%'";
                         break;
-                }
-            //echo $query;
-           
+            }
+
             $result = $db->consulta($query);
             $resp = "<table><tr><td>Nombre</td><td>Correo</td><td>Tel fijo</td><td>Celular</td><td>Dirección</td><td>Foto</td><td>Eliminar</td></tr>";
 
@@ -71,7 +81,6 @@
                     $resp .= "<td>".$row['cel']."</td>";
                     $resp .= "<td>".$row['direccion']."</td>";
                     $resp .= "<td><img style = 'height: 100px; width: 100px' src='".$row['fotoContacto']."'></img> </td>";
-                    //echo "row ".$row['foto'];
                     $resp .= "<td><button onclick='eliminar(this)' value=".$row['idContacto']." ><img  style = ' height: 20px; width: 20px; ' src='img/eliminar.png'></img></button></td>";
                     $resp .= "</tr>";
                 }
@@ -84,11 +93,14 @@
             return $resp;
         }
 
+        /*************************************************************************************************************************
+        *Metodo eliminar: elimina un contacto de la bd
+        *Retorno: boolean true-> eliminacion exitosa /   false->Error en la eliminacion 
+        /*************************************************************************************************************************/
         public function eliminar(){
             $db = new DataBase();
             $db->conectar();
             $query = "select fotoContacto from contacto where idContacto = '".$this->idContacto."'";
-            //echo $query;
             $result = $db->consulta($query);
 
             if(mysqli_num_rows($result) > 0){
@@ -97,7 +109,6 @@
             }
 
             $query = "delete from contacto where idContacto = ".$this->idContacto;
-            //echo $query;
             if ($db->consulta($query)) {
                 $db->desconectar();
                 return true;
@@ -112,8 +123,7 @@
             $db = new DataBase();
             $db->conectar();
             $query = "insert into contacto (idUsuario, nombre, tel, cel, email, direccion,fotoContacto) values ('".$idUsuario."','".$this->nombre."','".$this->tel."','".$this->cel."','".$this->email."','".$this->direccion."','".$this->dirImagen."')";
-            
-            //echo $query;
+
             if ($db->consulta($query)) {
                 $db->desconectar();
                 return true;

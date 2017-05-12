@@ -34,9 +34,20 @@
                         //una vez finalizado correctamente
                         success: function(data){
                             alert(data);
-                            if(data == "1") 
+                            if(data == "1"){
                                 alert("Contraseña cambiada con éxito, vuelva a iniciar la sesion");
-                               // $(location).attr('href',"controladores/logout.php");
+                                $(location).attr('href',"controladores/logout.php");
+                            }
+                            else if(data == "2"){
+                                alert("Error al cambiar su contraseña");
+                            }
+                            else if(data == "3"){
+                                alert("La contraseña nueva no coincide");
+                            }
+                            else{
+                                alert("Los datos de sesion no son corectos");
+                            }
+                               
                             
                         },
                         //si ha ocurrido un error
@@ -52,6 +63,11 @@
         </script>
     </head>
     <body>
+        <?php
+            session_start(); 
+            if(!isset($_SESSION['logged_in']))
+                header("Location: index.php");  
+        ?>
         <h1> Actualizar datos de perfil </h1>
         <form method="POST" action="controladores/CtrlPerfil.php" id="fmEditar" class="fmEditar" enctype="multipart/form-data">
             <span> Contraseña actual </span><br>

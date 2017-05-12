@@ -34,7 +34,6 @@ $(document).ready(function(){ //hasta que la pagina este completamente cargada
             //Caso 2: Error en usuario y/o contraseña
             //Caso 3: Algun campo vacio
             if(data=="1"){
-                //alert("Caso 1");
                 var url = "contenido.php"; 
                 $(location).attr('href',url);
             }
