@@ -5,6 +5,11 @@
 		<script src="js/jquery.js"></script>
 	</head>
 	<body>
+		<?php
+            session_start(); 
+            if(isset($_SESSION['logged_in']))
+                header("Location: contenido.php");  
+        ?>
 		<h1> Bienvenido </h1>
 		<p> Iniciar sesion </p>
 		<form method="POST" action="controladores/CtlSesion.php" id="fmInicioSesion">
