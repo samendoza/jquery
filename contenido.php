@@ -8,6 +8,10 @@
                     alert("Salir sesion");
                     $(location).attr('href',"controladores/logout.php");
                 });
+
+                $("#editarPerfil").click(function(){
+                      $(location).attr('href',"editar.php");
+                });
             });
         </script>
     </head>
@@ -20,7 +24,7 @@
 
         <h1> Bienvenido(a) <?php echo $_SESSION['usuario']; ?> </h1> 
         <?php
-             echo "<img src='".$_SESSION['foto']."' style='heigth: 100px; width:100px;'></img>";
+             echo "<img src='".$_SESSION['foto']."' style='height: 100px; width:100px;'></img>";
         ?>  
         <button id="editarPerfil"> Editar perfil </button>
 

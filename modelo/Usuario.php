@@ -84,5 +84,23 @@
         public function getImg(){
             return $this->img;
         }
+
+        public function actualizarPass($passNuevo){
+            $db = new DataBase();
+            $db->conectar();
+            
+            $query = "update registrousuario set pass = '".$passNuevo."' where usuario =  '".$this->usuario."'";
+            echo $query;
+            if($db->consulta($query)) {
+                 
+                //redireccion a nueva pagina con inicio de sesion exitoso
+                $db->desconectar();
+                return true;
+            }
+    
+            //echo "no existe el usuario";
+            $db->desconectar();
+            return false;
+        }
     }
 ?>
