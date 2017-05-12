@@ -2,10 +2,9 @@
 * Función que recupera informacion de un formulario y lo envia al servidor mediante ajax
 * y el metodo post
 /**************************************************************************************/
-$(document).ready(function(){ //hasta que la pagina este completamente cargada
-    
-    $("#avisoSes").hide();
-    $("#fmInicioSesion").submit(function(event){ //al dar clic en enviar:
+
+
+function iniciaSesion(event){ //al dar clic en enviar:
 
         $("#avisoSes").hide();
         event.preventDefault(); //previene que el formulario se procese como lo hace normalmente 
@@ -45,9 +44,5 @@ $(document).ready(function(){ //hasta que la pagina este completamente cargada
                 $("#avisoSes").show();
                 $("#avisoSes").text("Algun campo vacio");
             }
-            
         });
-        /****************************************************************************/
-        
-    });
-});
+}

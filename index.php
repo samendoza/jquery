@@ -3,6 +3,13 @@
 		<meta charset="UTF-8">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="js/jquery.js"></script>
+		<script>
+			$(document).ready(function(){ //hasta que la pagina este completamente cargada
+				$("#avisoSes").hide();
+				$("#fmInicioSesion").submit(iniciaSesion);
+
+			});
+		</script>
 	</head>
 	<body>
 		<?php
