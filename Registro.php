@@ -14,24 +14,8 @@
 
                     var $form = $( this ), // crea una variable form que apunta al formulario
                                       
-                    /*usuario = $(":input[name='usuarioR']").val(), 
-                    pass = $form.find( "input[name='passR']" ).val(),
-                    pass2 = $form.find( "input[name='pass2R']" ).val(),*/
                     url = $form.attr( "action" );
-                    // Se envia la peticion a la url junto con un objeto data, que puede ser un array {llave:valor}
-                   /* var posting = $.post( url, {usuario: usuario, pass: pass, pass2: pass2});
-                    posting.done(function( data ) {
-                        alert(data);
-                        if(data == "1"){
-                            alert("Usuario registrado con exito");
-                            var url = "index.php"; 
-                            $(location).attr('href',url);
-                        }
-                        else if(data == "2")
-                            alert("No podemos registrar su usuario");
-                        else
-                            alert("Las contraseñas no coinciden");
-                    });*/
+                   
 
                      $.ajax({
                         url: url,  
@@ -61,17 +45,10 @@
                             else
                                 alert("Las contraseñas no coinciden");
                                 message = $("<span class='success'>La imagen ha subido correctamente.</span>");
-                            //showMessage(message);
-                        /* if(isImage(fileExtension))
-                            {
-                                $(".showImage").html("<img src='files/"+data+"' />");
-                            }*/
                         },
                         //si ha ocurrido un error
                         error: function(){
                             message = $("<span class='error'>Ha ocurrido un error.</span>");
-                            
-                            //showMessage(message);
                         }
                     });
                 });
@@ -99,7 +76,7 @@
 	</head>
 	<body>
 		<h1> Registro </h1>
-		<form method="POST" action="controladores/CtlRegistro.php" id="fmregistro" class="fmregistro" enctype="multipart/form-data">
+		<form method="POST" action="controladores/CtrlCuenta.php" id="fmregistro" class="fmregistro" enctype="multipart/form-data">
             <span> Nombre de usuario </span><br>
 			<input type="text" name="usuarioR" placeholder="Usuario" id="usuarioR" required> </input>
             <span id="avisoUsuario" style="display:none"> </span>

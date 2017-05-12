@@ -10,7 +10,7 @@
                     event.preventDefault(); //previene que el formulario se procese como lo hace normalmente 
             
                     var formData = new FormData($(".fmEditar")[0]);
-                    formData.append("peticion","agregar");
+                    formData.append("peticion","modificar");
 
                     var $form = $( this ), // crea una variable form que apunta al formulario                
                     url = $form.attr( "action" );
@@ -69,7 +69,7 @@
                 header("Location: index.php");  
         ?>
         <h1> Actualizar datos de perfil </h1>
-        <form method="POST" action="controladores/CtrlPerfil.php" id="fmEditar" class="fmEditar" enctype="multipart/form-data">
+        <form method="POST" action="controladores/CtrlCuenta.php" id="fmEditar" class="fmEditar" enctype="multipart/form-data">
             <span> Contraseña actual </span><br>
 			<input type="password" name="pass" placeholder="Contraseña actual" id="pass" required> </input>
             <br>
