@@ -10,6 +10,8 @@
 
         if($pass == $pass2){
             $usuario = new Usuario($user, $pass);
+            $nombreArch = $_POST['usuarioR'].".".explode(".",$_FILES['foto']['name'])[1];
+            //echo $nombreArch;
             $usuario->setImg("img/fotosUsuario/".$nombreArch);
 
             //Caso 1: El usuario se registro con exito
