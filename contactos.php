@@ -22,9 +22,10 @@
                 header("Location: index.php");  
         ?>
 
+        <div>
         <h1> Contactos </h1>
 
-        Buscar contacto : <input type="text" name="busqueda" id="busqueda"> </input> <br> <br>
+        Buscar contacto : <input type="text" name="busqueda" id="busqueda" class="busqueda"> </input> <br> <br>
        
         Buscar por: <br>
         <input type="radio" class="rbCategoria" name="categoria" value="nombre" checked> Nombre<br>
