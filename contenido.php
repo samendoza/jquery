@@ -7,15 +7,20 @@
         <!--<Link rel="stylesheet href="default.css"-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="js/contacto.js"></script>
+        <script src="js/perfil.js"></script>
         <script>
             $(document).ready(function(){
+                
+
                 $("#cerrarSesion").click(function(){
                     alert("Salir sesion");
                     $(location).attr('href',"controladores/logout.php");
                 });
 
                 $("#editarPerfil").click(function(){
-                      $(location).attr('href',"editar.php");
+                    //$(location).attr('href',"editar.php");
+                    $("#content").empty();
+                    $("#content").load("editarPerfil.html");
                 });
 
                 $("#mostrarContent").click(function(){
@@ -24,7 +29,7 @@
                 });
 
                 $("#agregarCont").click(function(){
-                    //$("#content").empty();
+                    $("#content").empty();
                     $("#content").load("addContac.html");
                 });
 
@@ -34,6 +39,7 @@
                 $(document).on("keyup",".busqueda", busqueda);
                 $(document).on("click", ".rbCategoria", busqueda);
                 $(document).on("submit", ".fmAddCont", agregar);
+                $(document).on("submit", ".fmEditar", editarPerfil);
 
                 //$(document).on("click", "#agregar", busqueda);
 
