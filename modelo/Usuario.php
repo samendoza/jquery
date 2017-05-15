@@ -18,7 +18,7 @@
             $db = new DataBase();
             $db->conectar();
             
-            $query = "Select * from registroUsuario where usuario = '".$this->usuario."' and pass='".$this->pass."'";
+            $query = "call iniSesion('".$this->usuario."' , '".$this->pass."')";
             $result = $db->consulta($query);
 
             //Si hay un registro, el usuario y la contraseña existen
