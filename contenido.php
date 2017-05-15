@@ -33,15 +33,17 @@
 
                 $(document).on("keyup",".busqueda", busqueda);
                 $(document).on("click", ".rbCategoria", busqueda);
+                $(document).on("submit", ".fmAddCont", agregar);
+
                 //$(document).on("click", "#agregar", busqueda);
 
                 //$("#busqueda").keyup(busqueda);
                 //$(".rbCategoria").click(busqueda);
-                //$("#agregar").click(function(){
-                    //showMessage("");
-                    //$("#fmAgregar").show();
-                //});
-                //$(".fmAddCont").submit(agregar);
+               /* $("#agregar").click(function(){
+                    showMessage("");
+                    $("#fmAgregar").show();
+                });*/
+               // $(".fmAddCont").submit(agregar);
             });
         </script>
     </head>
